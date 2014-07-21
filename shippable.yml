@@ -1,10 +1,14 @@
+reset_minion: true
 language: go
 
 go:
   - 1.2
 
 env:
-  - CI_REPORT=shippable/testresults/junit.xml
+  global:
+    - CI_REPORT=shippable/testresults/junit.xml
+    - SLACK_ORG=shippable PROJECT=beta-build-samples
+    - secure: U/6KNzN1U1JT9DW3+cHrDjuCB8gY72TB1q89zX7mAUyaRGP+uiXcigOKOvV0kQ13R2kldjmj5Vh1fu0Oe1BHzfJE8VOat2+bFkh/GLSjudBrbuwa//6ruRy/SJMb2srcKkdpuo7/yi7L9oSWqqGHdDndVqft/yg2X3ITAv/G8byNFmbG2tBWsBH7Y3AKzQHR+LY/4iW4CfEzi211pM568BBsVeGmWnAA7jaa16CUCRDEbcG+q97bR7f6uoFe3CmGiXKgTyvjCMia2DWpRXNSRE+hsT4JIIfchDCV4uOEUmXItFejZ9dJpExKyPtwxkBtrVIZNyNw8odc2ReGwvtPLQ==
 
 before_install:
   - go get github.com/t-yuki/gocover-cobertura
@@ -21,3 +25,9 @@ before_script:
 script:
   - go test -coverprofile=coverage.txt -covermode count ./
   - $GOPATH/bin/gocover-cobertura < coverage.txt > shippable/codecoverage/coverage.xml
+
+after_failure:
+  - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN
+
+after_success:
+  - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s
