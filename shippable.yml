@@ -1,4 +1,3 @@
-reset_minion: true
 language: go
 
 go:
@@ -31,3 +30,5 @@ after_failure:
 
 after_success:
   - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s
+
+reset_minion: true
