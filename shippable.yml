@@ -6,7 +6,7 @@ go:
 env:
   global:
     - CI_REPORT=shippable/testresults/junit.xml
-    - SLACK_ORG=shippable PROJECT=beta-build-samples
+    - SLACK_ORG=shippable PROJECT=sample-go
     - secure: U/6KNzN1U1JT9DW3+cHrDjuCB8gY72TB1q89zX7mAUyaRGP+uiXcigOKOvV0kQ13R2kldjmj5Vh1fu0Oe1BHzfJE8VOat2+bFkh/GLSjudBrbuwa//6ruRy/SJMb2srcKkdpuo7/yi7L9oSWqqGHdDndVqft/yg2X3ITAv/G8byNFmbG2tBWsBH7Y3AKzQHR+LY/4iW4CfEzi211pM568BBsVeGmWnAA7jaa16CUCRDEbcG+q97bR7f6uoFe3CmGiXKgTyvjCMia2DWpRXNSRE+hsT4JIIfchDCV4uOEUmXItFejZ9dJpExKyPtwxkBtrVIZNyNw8odc2ReGwvtPLQ==
 
 before_install:
