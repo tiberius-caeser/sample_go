@@ -32,4 +32,11 @@ after_failure:
 after_success:
   - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s
 
+notifications:
+     email:
+         recipients:
+             - avniel+buildsample@shippable.com
+         on_success: change
+         on_failure: always
+
 reset_minion: true
